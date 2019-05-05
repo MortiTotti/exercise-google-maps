@@ -20,16 +20,18 @@ class MarkerItem extends React.Component {
     }
 
     _edit = () => {
-        const { index, item, editItem } = this.props;
-        editItem({ offer: item, index });
+        const { index, item, editMarker } = this.props;
+        if (editMarker)
+            editMarker({ marker: item, index });
     }
 
     _delete = () => {
-        const { index, item, deleteItem } = this.props;
+        const { index, item, removeMarker } = this.props;
         this.setState({ isDeleting: true },
             () => {
-                deleteItem({ offer: item, index },
-                    () => (this._isMounted) ? this.setState({ isDeleting: false }) : null);
+                if (removeMarker)
+                    removeMarker({ marker: item, index },
+                        () => (this._isMounted) ? this.setState({ isDeleting: false }) : null);
             });
     }
 

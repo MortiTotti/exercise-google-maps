@@ -20,22 +20,27 @@ class MedwingMap extends React.Component {
         this.setState({ isGeocodingError: false }, async () => {
             try {
                 const response = await Geocode.fromAddress(address);
-                if (response.results.length === 0) {
-                    this.setState({ isGeocodingError: true, error: 'Address not found' });
-                    return;
-                }
-
                 const { lat, lng } = response.results[0].geometry.location;
-                const marker = { lat, lng };
-                const foundAddress = {
-                    marker,
-                    title: response.results[0].formatted_address
-                };
-                this.setState({ center: { ...marker }, foundAddress, markers: [marker] })
+                const formattedAddress = response.results[0].formatted_address;
+                this._addMarker({ marker: { lat, lng }, formattedAddress });
             } catch (error) {
-                this.setState({ isGeocodingError: true, error: error.message });
+                // TODO: should have an error logger here
+                this.setState({ isGeocodingError: true, error: 'Address not found' });
             }
         });
+    }
+
+    _addMarker = ({ marker, formattedAddress }) => {
+        const { addMarker } = this.props;
+        const foundAddress = { 
+            ...marker,
+            title: formattedAddress
+        };
+        this.setState({ center: { ...marker }, foundAddress, markers: [marker] });
+
+        if (this.props.addMarker) {
+            addMarker(foundAddress);
+        }
     }
 
     _handleFormSubmit = submitEvent => {

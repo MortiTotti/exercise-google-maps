@@ -15,6 +15,7 @@ const Layout = ({ markers, isLoading, addMarker, editMarker, removeMarker }) =>
         </div>
         <MedwingMap
             markers={markers}
+            addMarker={addMarker}
         />
         <MarkersList
             items={markers}

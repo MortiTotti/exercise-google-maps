@@ -1,33 +1,28 @@
 import { actionTypes } from 'Constants';
 
-//-------------------- reducer initializiation
-const { MARKERS_LIST: actionType } = actionTypes;
-const initState = {
-    isLoading: false,
-    error: { message: "" },
-    markers: []
-};
+const { MARKERS_REMOVE: actionType } = actionTypes;
 
 //-------------------- reducer implementation
-const markersList = (state = initState, action) => {
+const mapMarkersRemove = (state, action) => {
     const { payload, type } = action;
 
     switch (type) {
-        case actionType.LOAD_REQUESTED: {
+        case actionType.REMVOE_REQUESTED: {
             return Object.assign({}, state, { isLoading: true, error: null });
         }
-        case actionType.LOAD_FAILED: {
+        case actionType.REMOVE_FAILED: {
             // TODO: reducer logger >> must call an error logger
             return Object.assign({}, state, {
                 isLoading: false,
                 error: { message: payload || "No error message specified" }
             });
         }
-        case actionType.LIST_RECEIVED: {
-            return Object.assign({}, state, { isLoading: false, markers: payload, error: null });
+        case actionType.REMOVE_SUCCEEDED: {
+            const newMarkers = state.markers.filter(t => t.id === payload.id);
+            return Object.assign({}, state, { isLoading: false, markers: newMarkers, error: null });
         }
         default: return state;
     }
 };
 
-export default markersList;
+export default mapMarkersRemove;

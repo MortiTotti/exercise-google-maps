@@ -2,30 +2,30 @@ import { actionTypes, urls } from 'Constants';
 import { HttpClient } from 'Helpers';
 
 //-------------------- action initializiation
-const { MARKERS_ADD: actionType } = actionTypes;
+const { MARKERS_REMOVE: actionType } = actionTypes;
 
 //-------------------- action creators
 const _requested = () => ({
-    type: actionType.ADD_REQUESTED
+    type: actionType.REMVOE_REQUESTED
 });
 
 const _failed = (message) => ({
-    type: actionType.ADD_FAILED,
+    type: actionType.REMOVE_FAILED,
     payload: message
 });
 
 const _received = (result) => ({
-    type: actionType.ADD_SUCCEEDED,
+    type: actionType.REMOVE_SUCCEEDED,
     payload: result
 });
 
 //-------------------- methods
-const _api = (data) => HttpClient().postAsync(`${urls.MARKERS}`, data);
+const _api = (id) => HttpClient().deleteAsync(`${urls.MARKERS}/${id}`);
 
-export const addMarker = (request) => async (dispatch) => {
+export const removeMarker = (id) => async (dispatch) => {
     dispatch(_requested());
     try {
-        let { status, message, result } = await _api(request);
+        let { status, message, result } = await _api(id);
         if (status) {
             dispatch(_received(result));
             return Promise.resolve(message);

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getMarkers, addMarker } from "Actions";
+import { getMarkers, addMarker, removeMarker } from "Actions";
 import Layout from "./Layout";
 
 class Home extends React.Component {
@@ -26,22 +26,40 @@ class Home extends React.Component {
         });
     }
 
-    _addMarker = () => {
+    _addMarker = (marker) => {
+        const { addMarker } = this.props;
+        this.setState({ isLoading: true }, async () => {
+            try {
+                await addMarker(marker);
+            } catch (err) {
+                console.log(err);
+            } finally {
+                this.setState({ isLoading: false });
+            }
+        });
+    }
+
+    _editMarker = (marker) => {
 
     }
 
-    _editMarker = (item) => {
-
-    }
-
-    _removeMarker = (item) => {
-
+    _removeMarker = ({ marker }) => {
+        const { removeMarker } = this.props;
+        this.setState({ isLoading: true }, async () => {
+            try {
+                await removeMarker(marker.id);
+            } catch (err) {
+                console.log(err);
+            } finally {
+                this.setState({ isLoading: false });
+            }
+        });
     }
 
     render() {
         const { markers } = this.props;
-        console.log(markers);
         const { isLoading } = this.state;
+
         return (
             <Layout
                 markers={markers || []}
@@ -58,4 +76,4 @@ const mapStateToProps = ({ markers }) => ({
     markers: markers.markers
 });
 
-export default connect(mapStateToProps, { getMarkers, addMarker })(Home);
+export default connect(mapStateToProps, { getMarkers, addMarker, removeMarker })(Home);

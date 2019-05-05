@@ -21,7 +21,10 @@ export default (app) => {
     route.post('/', async (req, res, next) => {
         try {
             const result = await (new MapMarkerService()).addMarker(req.body);
-            return res.json(result).status(200);
+            return res.json({
+                status: true,
+                result
+            }).status(200);
         } catch (err) {
             console.log('Server error ', err);
             return next(err);
@@ -31,17 +34,23 @@ export default (app) => {
     route.put('/', async (req, res, next) => {
         try {
             const result = await (new MapMarkerService()).updateMarker({ id: req.params.id, marker: req.body });
-            return res.json(result).status(200);
+            return res.json({
+                status: true,
+                result
+            }).status(200);
         } catch (err) {
             console.log('Server error ', err);
             return next(err);
         }
     });
 
-    route.delete('/', async (req, res, next) => {
+    route.delete('/:id', async (req, res, next) => {
         try {
             const result = await (new MapMarkerService()).removeMarker({ id: req.params.id });
-            return res.json(result).status(200);
+            return res.json({
+                status: true,
+                result
+            }).status(200);
         } catch (err) {
             console.log('Server error ', err);
             return next(err);
