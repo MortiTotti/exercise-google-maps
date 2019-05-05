@@ -1,4 +1,8 @@
 {
-    "url": "http://localhost:3001",
-    "defaultIBAN": "DE-09-1235-5899-45798-10"
+    "url": "http://localhost:3000",
+    "map_api_key": "AIzaSyC2fgI8v3-pjcX-Mz-pNw-SjuhA-D1Cjq8",
+    "default_map_center_point": {
+        "lng": 13.4050,
+        "lat": 52.5200
+    }
 }

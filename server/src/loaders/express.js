@@ -1,5 +1,6 @@
 import express from 'express';
 import createError from 'http-errors';
+import cors from "cors";
 import bodyParser from 'body-parser';
 import logger from 'morgan';
 import routes from '../controllers';
@@ -13,6 +14,11 @@ export default async ({ app }) => {
      */
     app.get('/status', (req, res) => { res.status(200).end(); });
     app.head('/status', (req, res) => { res.status(200).end(); });
+
+    var corsOptions = {
+        origin: 'http://localhost:8000'
+    }
+    app.use(cors(corsOptions));
 
     app.use(logger('dev'));
     app.use(express.json());

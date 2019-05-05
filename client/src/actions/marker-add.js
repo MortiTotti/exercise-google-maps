@@ -25,7 +25,7 @@ const _received = (result) => ({
 //-------------------- methods
 const _api = (data) => HttpClient().postAsync(`${urls.MARKERS}`, data);
 
-const addMarker = (request) => async (dispatch) => {
+export const addMarker = (request) => async (dispatch) => {
     dispatch(_requested());
     try {
         let { status, message } = await _api(request);
@@ -40,8 +40,4 @@ const addMarker = (request) => async (dispatch) => {
         dispatch(_failed({ message: error.message || error }));
         return Promise.reject(error);
     }
-};
-
-export default {
-    addMarker
 };

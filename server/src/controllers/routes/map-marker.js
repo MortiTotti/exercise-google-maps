@@ -8,7 +8,10 @@ export default (app) => {
     route.get('/', async (req, res, next) => {
         try {
             const result = await (new MapMarkerService()).getAllMarkers();
-            return res.json(result).status(200);
+            return res.json({
+                status: true,
+                result
+            }).status(200);
         } catch (err) {
             console.log('Server error ', err);
             return next(err);

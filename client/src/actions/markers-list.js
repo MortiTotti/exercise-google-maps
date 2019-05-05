@@ -23,14 +23,14 @@ const _received = (result) => ({
 });
 
 //-------------------- methods
-const _api = () => HttpClient().getAsync(`${urls.MARKERS}`);
+const _api =  () => HttpClient().getAsync(`${urls.MARKERS}`);
 
-const getMarkers = (request) => async (dispatch) => {
+export const getMarkers = () => async (dispatch) => {
     dispatch(_requested());
     try {
-        let { status, message } = await _api(request);
+        let { status, message, result } = await _api();
         if (status) {
-            dispatch(_received());
+            dispatch(_received(result));
             return Promise.resolve(message);
         } else {
             dispatch(_failed({ message }));
@@ -40,8 +40,4 @@ const getMarkers = (request) => async (dispatch) => {
         dispatch(_failed({ message: error.message || error }));
         return Promise.reject(error);
     }
-};
-
-export default {
-    getMarkers
 };

@@ -27,7 +27,7 @@ const markersList = (state = initState, action) => {
             });
         }
         case actionType.LIST_RECEIVED: {
-            return Object.assign({}, state, { isLoading: false, markers: payload.result, error: null });
+            return Object.assign({}, state, { isLoading: false, markers: payload, error: null });
         }
         default: return state;
     }

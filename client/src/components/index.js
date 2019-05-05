@@ -1,9 +1,7 @@
-import Map from './Map';
-import MapMarker from "./Map-Marker";
-import LoadingWidget from "./Loading-Widget";
+import MedwingMap from './Medwing-Map';
+import MedwingLoadingIndicator from "./Medwing-Loading-Indicator";
 
 export {
-    Map,
-    MapMarker,
-    LoadingWidget
+    MedwingMap,
+    MedwingLoadingIndicator
 }

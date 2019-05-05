@@ -1,4 +1,9 @@
-let IN_MEMORY_DB = [];
+let IN_MEMORY_DB = [{
+    id: '34234234234',
+    title: 'Leipzig',
+    lat: 51.33,
+    lng: 12.37
+}];
 
 export default class MapMarkerRepository {
     get = async () => Promise.resolve(IN_MEMORY_DB);

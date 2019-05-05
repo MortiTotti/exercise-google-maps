@@ -1,7 +1,7 @@
-import markersList from "./markers-list";
-import markerAdd from "./markers-add";
+import { getMarkers } from "./markers-list";
+import { addMarker } from "./marker-add";
 
 export {
-    markersList,
-    markerAdd
+    getMarkers,
+    addMarker
 }

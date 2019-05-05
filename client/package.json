@@ -5,10 +5,13 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-geocode": "^0.1.2",
+    "react-google-maps": "^9.4.5",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.0",
     "react-toast-notifications": "^1.4.0",
+    "recompose": "^0.30.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
