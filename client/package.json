@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "expect": "^24.8.0",
+    "fetch-mock": "^7.3.3",
+    "jest": "^24.8.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-geocode": "^0.1.2",
@@ -14,18 +17,29 @@
     "recompose": "^0.30.0",
     "redux": "^4.0.1",
     "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.5.3",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
     "build": "webpack --mode production",
-    "test": "react-scripts test",
+    "test": "jest",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^Root(.*)$": "<rootDir>$1",
+      "^Components(.*)$": "<rootDir>/src/components$1",
+      "^Actions(.*)$": "<rootDir>/src/actions$1",
+      "^Constants(.*)$": "<rootDir>/src/constants$1",
+      "^Reducers(.*)$": "<rootDir>/src/reducers$1",
+      "^Helpers(.*)$": "<rootDir>/src/helpers$1"
+    }
+  },  
   "browserslist": {
     "production": [
       ">0.2%",

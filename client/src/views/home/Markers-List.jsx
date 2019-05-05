@@ -1,7 +1,7 @@
 import React from "react";
 import MarkerItem from "./Marker-Item";
 
-const MarkersList = ({ items, acceptOffer }) =>
+const MarkersList = ({ items, editItem, deleteItem }) =>
     <React.Fragment>
         <div className="sub-offers-title">
             New Offers
@@ -12,7 +12,8 @@ const MarkersList = ({ items, acceptOffer }) =>
                     key={index}
                     index={index}
                     item={item}
-                    acceptOffer={acceptOffer}
+                    editItem={editItem}
+                    deleteItem={deleteItem}
                 />
             )
         }

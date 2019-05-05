@@ -4,7 +4,7 @@ import { actionTypes } from 'Constants';
 const { MARKERS_LIST: actionType } = actionTypes;
 const initState = {
     isLoading: false,
-    error: { code: "", message: "" },
+    error: { message: "" },
     markers: []
 };
 
@@ -20,10 +20,7 @@ const markersList = (state = initState, action) => {
             // TODO: reducer logger >> must call an error logger
             return Object.assign({}, state, {
                 isLoading: false,
-                error: {
-                    code: payload.code || "No error code specified",
-                    message: payload.message || "No error message specified",
-                }
+                error: { message: payload || "No error message specified" }
             });
         }
         case actionType.LIST_RECEIVED: {

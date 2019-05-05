@@ -9,12 +9,9 @@ const _requested = () => ({
     type: actionType.LOAD_REQUESTED
 });
 
-const _failed = ({ code, message }) => ({
+const _failed = (message) => ({
     type: actionType.LOAD_FAILED,
-    payload: {
-        code,
-        message,
-    }
+    payload: message
 });
 
 const _received = (result) => ({
@@ -23,7 +20,7 @@ const _received = (result) => ({
 });
 
 //-------------------- methods
-const _api =  () => HttpClient().getAsync(`${urls.MARKERS}`);
+const _api = () => HttpClient().getAsync(`${urls.MARKERS}`);
 
 export const getMarkers = () => async (dispatch) => {
     dispatch(_requested());
@@ -33,7 +30,7 @@ export const getMarkers = () => async (dispatch) => {
             dispatch(_received(result));
             return Promise.resolve(message);
         } else {
-            dispatch(_failed({ message }));
+            dispatch(_failed(message));
             return Promise.reject({ message });
         }
     } catch (error) {
