@@ -1,17 +1,18 @@
 import React from "react";
 import MarkerItem from "./Marker-Item";
 
-const MarkersList = ({ items, editItem, deleteItem }) =>
+const MarkersList = ({ items, onMarkerEdit, onMarkerRemove, onMarkerSelect }) =>
     <div className="makers-list-container">
-        <ul>            
+        <ul>
             {
                 items.map((item, index) =>
                     <MarkerItem
                         key={index}
                         index={index}
                         item={item}
-                        editItem={editItem}
-                        deleteItem={deleteItem}
+                        onMarkerEdit={onMarkerEdit}
+                        onMarkerRemove={onMarkerRemove}
+                        onMarkerSelect={onMarkerSelect}
                     />
                 )
             }

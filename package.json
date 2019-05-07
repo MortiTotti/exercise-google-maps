@@ -1,0 +1,22 @@
+{
+  "name": "medwing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently \"cd server && npm start\" \"cd client && npm start\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MortiTotti/exercise-google-maps.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MortiTotti/exercise-google-maps/issues"
+  },
+  "homepage": "https://github.com/MortiTotti/exercise-google-maps#readme",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
+}

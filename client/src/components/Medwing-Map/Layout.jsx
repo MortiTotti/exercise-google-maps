@@ -1,25 +1,25 @@
 import React from "react";
-import MedwingGoogleMap from "./Medwing-Google-Map";
+import GoogleMap from "./vendor/Google-Map";
 
 const Layout = ({
-    center, markers, isGeocodingError, error,
-    foundAddress, handleFormSubmit, setSearchInputElementRef
+    foundedMarker, markers, isGeocodingError, error,
+    handleFormSearch, handleMarkerAdd, setSearchInputRef
 }) =>
     <div className="medwing-map-container">
-        <form className="search-form" onSubmit={handleFormSubmit}>
+        <form className="search-form" onSubmit={handleFormSearch}>
             <input
                 type="text"
                 id="address"
                 className="search-input"
                 placeholder="Address..."
-                ref={setSearchInputElementRef}
+                ref={setSearchInputRef}
                 required
             />
-            <button type="submit" >
+            <button type="submit">
                 Search
             </button>
-            <button>
-                Add 
+            <button onClick={handleMarkerAdd}>
+                Add
             </button>
         </form>
         <div className="row">
@@ -28,14 +28,14 @@ const Layout = ({
                     isGeocodingError ?
                         <p className="bg-danger">{error}</p> :
                         <p className="bg-info">
-                            {foundAddress.title}
+                            {foundedMarker && foundedMarker.title}
                         </p>
                 }
                 <div className="map">
-                    <MedwingGoogleMap
-                        center={center}
+                    <GoogleMap
+                        center={foundedMarker}
+                        tempMarker={foundedMarker}
                         markers={markers}
-                        isMarkerShown={(markers.length !== 0)}
                     />
                 </div>
             </div>

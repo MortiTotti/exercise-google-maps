@@ -1,5 +1,5 @@
-import { BASE_URL } from "./settings";
+import settings from "./settings";
 
 export default {
-    MARKERS: `${BASE_URL}/api/mapmarker`
+    MARKERS: `${settings.BASE_URL}/api/mapmarker`
 }

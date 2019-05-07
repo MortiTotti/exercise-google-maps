@@ -1,64 +1,75 @@
 import React from "react";
+import { toast } from 'react-toastify';
 import Geocode from 'react-geocode';
-import { settings } from "Constants";
 import Layout from "./Layout";
+import { settings } from "Constants";
 
 class MedwingMap extends React.Component {
 
     state = {
-        isGeocodingError: false,
-        center: settings.DEFAULT_MAP_CENTER_POINT,
-        markers: [],
-        foundAddress: {}
+        isGeocodingError: false
+    }
+
+    componentWillReceiveProps(newProps) {
+        const { selectedMarker } = newProps;
+        if (selectedMarker)
+            this.setState({ foundedMarker: selectedMarker });
     }
 
     componentDidMount() {
         Geocode.setApiKey(settings.MAP_API_KEY);
     }
 
-    _geoFromAddress = (address) => {
+    _geoFromAddress = async (address) => {
         this.setState({ isGeocodingError: false }, async () => {
             try {
                 const response = await Geocode.fromAddress(address);
-                if (response.results.length === 0) {
-                    this.setState({ isGeocodingError: true, error: 'Address not found' });
-                    return;
-                }
-
                 const { lat, lng } = response.results[0].geometry.location;
-                const marker = { lat, lng };
-                const foundAddress = {
-                    marker,
-                    title: response.results[0].formatted_address
-                };
-                this.setState({ center: { ...marker }, foundAddress, markers: [marker] })
+                const formattedAddress = response.results[0].formatted_address;
+
+                const foundedMarker = { title: formattedAddress, lat, lng };
+                this.setState({ foundedMarker });
             } catch (error) {
-                this.setState({ isGeocodingError: true, error: error.message });
+                // TODO: should have an error logger here
+                toast.error("Address not found");
+                this.setState({ isGeocodingError: true });
             }
         });
     }
 
-    _handleFormSubmit = submitEvent => {
+    _handleFormSearch = submitEvent => {
         submitEvent.preventDefault();
-        var address = this.searchInputElement.value;
+        var address = this.elSearchInput.value;
         this._geoFromAddress(address);
     }
 
-    _setSearchInputElementRef = inputReference => {
-        this.searchInputElement = inputReference;
+    _handleMarkerAdd = submitEvent => {
+        submitEvent.preventDefault();
+        const { addMarker } = this.props;
+        const { foundedMarker } = this.state;
+        if (!foundedMarker) {
+            toast.error("You should search for an address before!!");
+            return;
+        }
+        if (this.props.addMarker) {
+            addMarker(foundedMarker);
+        }
     }
 
+    _setSearchInputRef = ref => this.elSearchInput = ref;
+
     render() {
-        const { center, markers, isGeocodingError, foundAddress, error } = this.state;
+        const { markers } = this.props;
+        const { isGeocodingError, foundedMarker, error } = this.state;
         return (
             <Layout
-                center={center}
+                foundedMarker={foundedMarker}
                 markers={markers}
                 isGeocodingError={isGeocodingError}
-                foundAddress={foundAddress}
-                handleFormSubmit={this._handleFormSubmit}
-                setSearchInputElementRef={this._setSearchInputElementRef}
                 error={error}
+                handleFormSearch={this._handleFormSearch}
+                handleMarkerAdd={this._handleMarkerAdd}
+                setSearchInputRef={this._setSearchInputRef}
             />
         );
     }

@@ -17,17 +17,25 @@ class MarkerItem extends React.Component {
     }
 
     _edit = () => {
-        const { index, item, editItem } = this.props;
-        editItem({ offer: item, index });
+        const { index, item, onMarkerEdit } = this.props;
+        if (onMarkerEdit)
+            onMarkerEdit({ marker: item, index });
     }
 
     _delete = () => {
-        const { index, item, deleteItem } = this.props;
+        const { index, item, onMarkerRemove } = this.props;
+        if (!onMarkerRemove) return;
         this.setState({ isDeleting: true },
             () => {
-                deleteItem({ offer: item, index },
+                onMarkerRemove({ marker: item, index },
                     () => (this._isMounted) ? this.setState({ isDeleting: false }) : null);
             });
+    }
+
+    _select = () => {
+        const { item, onMarkerSelect } = this.props;
+        if (onMarkerSelect)
+            onMarkerSelect(item);
     }
 
     render() {
@@ -35,7 +43,7 @@ class MarkerItem extends React.Component {
         const { isDeleting } = this.state;
 
         return (
-            <div>
+            <div onClick={this._select}>
                 <li className="card">
                     <div className="card-content">
                         <div className="card-title">{item.title}</div>
@@ -51,7 +59,7 @@ class MarkerItem extends React.Component {
                             {isDeleting ? <SpinnerSvg width={50} height={50} viewBox="0 0 100 115" /> : "Delete"}
                         </button>
                     </div>
-                </li>                
+                </li>
             </div>
         );
     }

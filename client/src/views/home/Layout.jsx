@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { MedwingMap, MedwingLoadingIndicator } from "Components";
 import MarkersList from "./Markers-List";
 
-const Layout = ({ markers, isLoading, editMarker, removeMarker }) =>
+const Layout = ({ markers, selectedMarker, isLoading, onMarkerAdd, onMarkerEdit, onMarkerRemove, onMarkerSelect }) =>
     <article className="offers-container">
         <MedwingLoadingIndicator isLoading={isLoading} />        
         <div className="offers-title">
@@ -12,11 +12,14 @@ const Layout = ({ markers, isLoading, editMarker, removeMarker }) =>
         <div className="map-and-list-layout">
             <MedwingMap
                 markers={markers}
+                addMarker={onMarkerAdd}
+                selectedMarker={selectedMarker}
             />
             <MarkersList
                 items={markers}
-                editMarker={editMarker}
-                removeMarker={removeMarker} />
+                onMarkerEdit={onMarkerEdit}
+                onMarkerSelect={onMarkerSelect}
+                onMarkerRemove={onMarkerRemove} />
         </div>
     </article>
 
@@ -29,7 +32,7 @@ Layout.propTypes = {
             lng: PropTypes.number.isRequired
         }).isRequired
     ).isRequired,
-    addMarker: PropTypes.func.isRequired,
+    onMarkerAdd: PropTypes.func.isRequired,
     isLoading: PropTypes.bool.isRequired,
 }
 

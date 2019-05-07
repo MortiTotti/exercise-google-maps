@@ -5,7 +5,6 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from 'Store';
 import App from 'Views';
 import * as serviceWorker from './serviceWorker';
-import 'Assets/styles';
 
 const Root = () =>
     <Provider store={store}>

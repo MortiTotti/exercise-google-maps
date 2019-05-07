@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux';
-import markersList from './markers-list';
+import mapMarkers from './map-markers';
 
 const allReducers = combineReducers(
     {
-        markers: markersList
+        markers: mapMarkers
     });
 
 const rootReducer = (state, action) => allReducers(state, action);

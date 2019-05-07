@@ -1,14 +1,14 @@
 import React from 'react';
-import { ToastProvider } from 'react-toast-notifications';
+import { ToastContainer } from 'react-toastify';
 import Home from "./home";
+import 'Assets/styles';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => (
-    <ToastProvider
-        autoDismissTimeout={6000}
-        placement="bottom-center"
-    >
+    <React.Fragment>
+        <ToastContainer />
         <Home />
-    </ToastProvider>
+    </React.Fragment>
 );
 
 export default App;

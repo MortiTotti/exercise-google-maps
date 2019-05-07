@@ -6,8 +6,8 @@ export default class MapMarkerService {
         return await (new MapMarkerRepository()).get();
     }
 
-    async addMarker({ title, long, lat }) {
-        const mapMarker = new MapMarker({ title, long, lat });
+    async addMarker({ title, lng, lat }) {
+        const mapMarker = new MapMarker({ title, lng, lat });
         return await (new MapMarkerRepository()).add(mapMarker);
     }
 

@@ -23,9 +23,13 @@ export default class MapMarkerRepository {
         return Promise.resolve(updatedMarker)
     }
 
-    async delete(id) {
-        let count = IN_MEMORY_DB.length;
-        IN_MEMORY_DB = IN_MEMORY_DB.filter(marker => marker.id != id);
-        return (IN_MEMORY_DB.length != count) ? Promise.resolve(true) : Promise.reject(false);
-    }    
+    async remove(id) {
+        try {
+            let count = IN_MEMORY_DB.length;
+            IN_MEMORY_DB = IN_MEMORY_DB.filter(marker => marker.id == id);
+            return (IN_MEMORY_DB.length != count) ? Promise.resolve(true) : Promise.reject(false);
+        } catch(err) {
+            console.log(err);
+        }
+    }
 }
