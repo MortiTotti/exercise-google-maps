@@ -26,7 +26,8 @@ export default class MapMarkerRepository {
     async remove(id) {
         try {
             let count = IN_MEMORY_DB.length;
-            IN_MEMORY_DB = IN_MEMORY_DB.filter(marker => marker.id == id);
+            IN_MEMORY_DB = IN_MEMORY_DB.filter(marker => marker.id == id);            
+            console.log(IN_MEMORY_DB);
             return (IN_MEMORY_DB.length != count) ? Promise.resolve(true) : Promise.reject(false);
         } catch(err) {
             console.log(err);

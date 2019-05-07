@@ -2,7 +2,7 @@ import React from "react";
 import GoogleMap from "./vendor/Google-Map";
 
 const Layout = ({
-    foundedMarker, markers, isGeocodingError, error,
+    foundedMarker, markers, error,
     handleFormSearch, handleMarkerAdd, setSearchInputRef
 }) =>
     <div className="medwing-map-container">
@@ -24,16 +24,8 @@ const Layout = ({
         </form>
         <div className="row">
             <div className="col-sm-12">
-                {
-                    isGeocodingError ?
-                        <p className="bg-danger">{error}</p> :
-                        <p className="bg-info">
-                            {foundedMarker && foundedMarker.title}
-                        </p>
-                }
                 <div className="map">
                     <GoogleMap
-                        center={foundedMarker}
                         tempMarker={foundedMarker}
                         markers={markers}
                     />

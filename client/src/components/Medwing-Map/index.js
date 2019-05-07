@@ -6,10 +6,7 @@ import { settings } from "Constants";
 
 class MedwingMap extends React.Component {
 
-    state = {
-        isGeocodingError: false
-    }
-
+    state = {}
     componentWillReceiveProps(newProps) {
         const { selectedMarker } = newProps;
         if (selectedMarker)
@@ -21,20 +18,17 @@ class MedwingMap extends React.Component {
     }
 
     _geoFromAddress = async (address) => {
-        this.setState({ isGeocodingError: false }, async () => {
-            try {
-                const response = await Geocode.fromAddress(address);
-                const { lat, lng } = response.results[0].geometry.location;
-                const formattedAddress = response.results[0].formatted_address;
+        try {
+            const response = await Geocode.fromAddress(address);
+            const { lat, lng } = response.results[0].geometry.location;
+            const formattedAddress = response.results[0].formatted_address;
 
-                const foundedMarker = { title: formattedAddress, lat, lng };
-                this.setState({ foundedMarker });
-            } catch (error) {
-                // TODO: should have an error logger here
-                toast.error("Address not found");
-                this.setState({ isGeocodingError: true });
-            }
-        });
+            const foundedMarker = { title: formattedAddress, lat, lng };
+            this.setState({ foundedMarker });
+        } catch (error) {
+            // TODO: should have an error logger here
+            toast.error("Address not found");
+        }
     }
 
     _handleFormSearch = submitEvent => {
@@ -60,12 +54,11 @@ class MedwingMap extends React.Component {
 
     render() {
         const { markers } = this.props;
-        const { isGeocodingError, foundedMarker, error } = this.state;
+        const { foundedMarker, error } = this.state;
         return (
             <Layout
                 foundedMarker={foundedMarker}
                 markers={markers}
-                isGeocodingError={isGeocodingError}
                 error={error}
                 handleFormSearch={this._handleFormSearch}
                 handleMarkerAdd={this._handleMarkerAdd}
