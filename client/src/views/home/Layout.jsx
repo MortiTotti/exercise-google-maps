@@ -1,25 +1,23 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import LogoSvg from "Assets/images/logoSvg";
 import { MedwingMap, MedwingLoadingIndicator } from "Components";
 import MarkersList from "./Markers-List";
 
-const Layout = ({ markers, isLoading, addMarker, editMarker, removeMarker }) =>
+const Layout = ({ markers, isLoading, editMarker, removeMarker }) =>
     <article className="offers-container">
-        <MedwingLoadingIndicator isLoading={isLoading} />
-        <div className="logo">
-            <LogoSvg />
-        </div>
+        <MedwingLoadingIndicator isLoading={isLoading} />        
         <div className="offers-title">
             Find the address
         </div>
-        <MedwingMap
-            markers={markers}
-        />
-        <MarkersList
-            items={markers}
-            editMarker={editMarker}
-            removeMarker={removeMarker} />            
+        <div className="map-and-list-layout">
+            <MedwingMap
+                markers={markers}
+            />
+            <MarkersList
+                items={markers}
+                editMarker={editMarker}
+                removeMarker={removeMarker} />
+        </div>
     </article>
 
 Layout.propTypes = {

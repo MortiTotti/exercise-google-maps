@@ -1,9 +1,6 @@
 import React from "react";
 import SpinnerSvg from "Assets/animation/spinner-svg";
 
-const matchedStyle = { backgroundColor: "#44C600" }
-const notMatchedStyle = { backgroundColor: "#FF4141" }
-
 class MarkerItem extends React.Component {
     _isMounted = false;
 
@@ -38,31 +35,24 @@ class MarkerItem extends React.Component {
         const { isDeleting } = this.state;
 
         return (
-            <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-                <li className="new-query-row">
-                    <div className="left-side">
-                        <div className="status-sign" style={item.schedule_matches ? matchedStyle : notMatchedStyle}>
-                        </div>
-                        <div className="offers-details">
-                            <span>
-                                {item.title}
-                            </span>
-                            <span>
-                                {item.lng}
-                            </span>
-                        </div>
+            <div>
+                <li className="card">
+                    <div className="card-content">
+                        <div className="card-title">{item.title}</div>
+                        <div className="sub-content">{item.title}</div>
+                        <div className="sub-content">Latitude: {item.lng}</div>
+                        <div className="sub-content">Longitude: {item.lng}</div>
                     </div>
-                    <div className="divider"></div>
-                    <div className="right-side">
-                        <button onClick={this._edit}>
+                    <div className="card-footer">
+                        <button className="edit-btn" onClick={this._edit}>
                             Edit
-                        </button>
-                        <button onClick={this._delete}>
+                            </button>
+                        <button className="delete-btn" onClick={this._delete}>
                             {isDeleting ? <SpinnerSvg width={50} height={50} viewBox="0 0 100 115" /> : "Delete"}
                         </button>
                     </div>
-                </li>
-            </ul>
+                </li>                
+            </div>
         );
     }
 }
