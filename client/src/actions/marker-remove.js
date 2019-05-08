@@ -9,12 +9,12 @@ const _requested = () => ({
     type: actionType.REMVOE_REQUESTED
 });
 
-const _failed = (message) => ({
+const _failed = message => ({
     type: actionType.REMOVE_FAILED,
     payload: message
 });
 
-const _received = (result) => ({
+const _received = result => ({
     type: actionType.REMOVE_SUCCEEDED,
     payload: result
 });
@@ -26,11 +26,11 @@ export const removeMarker = (id) => async (dispatch) => {
     dispatch(_requested());
     try {
         let { status, message, result } = await _api(id);
-        if (status) {
-            dispatch(_received(result));
+        if (status && result) {
+            dispatch(_received(id));
             return Promise.resolve(message);
         } else {
-            dispatch(_failed(message));
+            dispatch(_failed(message || "There was an error in deleting this marker"));
             return Promise.reject({ message });
         }
     } catch (error) {

@@ -3,6 +3,11 @@ let IN_MEMORY_DB = [{
     title: 'Leipzig',
     lat: 51.33,
     lng: 12.37
+}, {
+    id: '34234234235',
+    title: 'Leipzig 1',
+    lat: 51.33,
+    lng: 12.37
 }];
 
 export default class MapMarkerRepository {
@@ -26,10 +31,9 @@ export default class MapMarkerRepository {
     async remove(id) {
         try {
             let count = IN_MEMORY_DB.length;
-            IN_MEMORY_DB = IN_MEMORY_DB.filter(marker => marker.id == id);            
-            console.log(IN_MEMORY_DB);
+            IN_MEMORY_DB = IN_MEMORY_DB.filter(marker => marker.id != id);
             return (IN_MEMORY_DB.length != count) ? Promise.resolve(true) : Promise.reject(false);
-        } catch(err) {
+        } catch (err) {
             console.log(err);
         }
     }

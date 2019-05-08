@@ -7,7 +7,7 @@ const MarkersList = ({ items, onMarkerEdit, onMarkerRemove, onMarkerSelect }) =>
             {
                 items.map((item, index) =>
                     <MarkerItem
-                        key={index}
+                        key={item.id}
                         index={index}
                         item={item}
                         onMarkerEdit={onMarkerEdit}

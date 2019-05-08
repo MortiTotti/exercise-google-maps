@@ -46,7 +46,7 @@ export default (app) => {
 
     route.delete('/:id', async (req, res, next) => {
         try {
-            const result = await (new MapMarkerService()).removeMarker({ id: req.params.id });
+            const result = await (new MapMarkerService()).removeMarker(req.params.id);
             return res.json({
                 status: true,
                 result

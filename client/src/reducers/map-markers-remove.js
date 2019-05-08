@@ -18,7 +18,7 @@ const mapMarkersRemove = (state, action) => {
             });
         }
         case actionType.REMOVE_SUCCEEDED: {
-            const newMarkers = state.markers.filter(t => t.id === payload.id);
+            const newMarkers = state.markers.filter(t => t.id !== payload);
             return Object.assign({}, state, { isLoading: false, markers: newMarkers, error: null });
         }
         default: return state;

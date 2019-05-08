@@ -9,6 +9,10 @@
     font-family: Roboto;
     src: url("../../assets/fonts/roboto.regular.ttf");
   }
+
+  button {
+    width: 80px;
+  }
   .offers-container{
     padding: 20px 20px 20px 20px;  
     font-family: "Roboto";
@@ -88,12 +92,18 @@
     border-left: none;    
     cursor: pointer;   
     font-weight: 600;
-    padding: 8px 10px;    
+    padding: 8px 10px;
+    background-color: #4E66A2;    
+    color: white;
   }
-  .search-form button:last-child{    
+
+  .search-form button:last-child{
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
+    color: black;
+    background-color: #C4EEB4;    
   }
+
   .search-form button:hover{
     background-color: rgb(207, 207, 207);
   }
@@ -122,6 +132,7 @@
     font-size: 23px;
     font-weight: 600;
     margin-bottom: 8px;
+    cursor: pointer;
   }
   .sub-content{
     font-size: 14px;
