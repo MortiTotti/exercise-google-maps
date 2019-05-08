@@ -1,16 +1,17 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import { MedwingMap, MedwingLoadingIndicator } from "Components";
+import { SearchableMedwingMap, MedwingLoadingIndicator } from "Components";
 import MarkersList from "./Markers-List";
 
-const Layout = ({ markers, selectedMarker, isLoading, onMarkerAdd, onMarkerEdit, onMarkerRemove, onMarkerSelect }) =>
+const Layout = ({ markers, selectedMarker, isLoading, onMarkerAdd, onMarkerEdit, onMarkerRemove, onMarkerSelect, gotoAddView }) =>
     <article className="offers-container">
-        <MedwingLoadingIndicator isLoading={isLoading} />        
+        <MedwingLoadingIndicator isLoading={isLoading} />
         <div className="offers-title">
             Find the address
         </div>
+        <button onClick={gotoAddView}>Add</button>
         <div className="map-and-list-layout">
-            <MedwingMap
+            <SearchableMedwingMap
                 markers={markers}
                 addMarker={onMarkerAdd}
                 selectedMarker={selectedMarker}

@@ -47,7 +47,7 @@ class MarkerItem extends React.Component {
                 <li className="card">
                     <div className="card-content">
                         <div onClick={this._select} className="card-title">{item.title}</div>
-                        <div className="sub-content">{item.title}</div>
+                        <div className="card-subtitle">{item.title}</div>
                         <div className="sub-content">Latitude: {item.lng}</div>
                         <div className="sub-content">Longitude: {item.lng}</div>
                     </div>

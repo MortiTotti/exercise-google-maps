@@ -1,13 +1,13 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
-import Home from "./home";
+import MainRoutes from "Routes/Main-Routes";
 import 'Assets/styles';
 import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => (
     <React.Fragment>
         <ToastContainer />
-        <Home />
+        <MainRoutes />
     </React.Fragment>
 );
 

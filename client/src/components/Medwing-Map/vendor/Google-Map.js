@@ -18,19 +18,7 @@ const GoogleMap =
     )(props => (
         <RGoogleMap
             defaultZoom={12}
-            center={props.tempMarker || settings.DEFAULT_MAP_CENTER_POINT}>
-            {   // show the temporary marker with a different style (founded marker by user search)
-                props.tempMarker &&
-                <Marker
-                    icon={{
-                        path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
-                        strokeColor: "green",
-                        strokeWeight: 4,
-                        scale: 7
-                    }}
-                    position={{ ...props.tempMarker }}
-                />
-            }
+            center={props.center || settings.DEFAULT_MAP_CENTER_POINT}>
             {
                 props.markers.map((marker, index) =>
                     <Marker

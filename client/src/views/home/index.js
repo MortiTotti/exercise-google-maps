@@ -47,6 +47,10 @@ class Home extends React.Component {
 
     }
 
+    _gotoAddView = () => {
+        this.props.history.push('data');
+    }
+
     _onMarkerRemove = ({ marker }) => {
         const { removeMarker } = this.props;
         if (!removeMarker) return;
@@ -71,7 +75,7 @@ class Home extends React.Component {
                 markers={markers || []}
                 selectedMarker={selectedMarker}
                 isLoading={isLoading}
-
+                gotoAddView={this._gotoAddView}
                 onMarkerAdd={this._onMarkerAdd}
                 onMarkerEdit={this._onMarkerEdit}
                 onMarkerRemove={this._onMarkerRemove}
