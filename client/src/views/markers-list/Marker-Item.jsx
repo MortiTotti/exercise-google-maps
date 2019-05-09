@@ -1,4 +1,5 @@
 import React from "react";
+import { tMapMarker, tNumber, tFunc } from 'Types';
 import SpinnerSvg from "Assets/animation/spinner-svg";
 
 class MarkerItem extends React.Component {
@@ -14,12 +15,6 @@ class MarkerItem extends React.Component {
 
     componentWillUnmount() {
         this._isMounted = false;
-    }
-
-    _edit = () => {
-        const { index, item, onMarkerEdit } = this.props;
-        if (onMarkerEdit)
-            onMarkerEdit({ marker: item, index });
     }
 
     _delete = () => {
@@ -39,7 +34,7 @@ class MarkerItem extends React.Component {
     }
 
     render() {
-        const { item } = this.props;
+        const { item, onMarkerEdit } = this.props;
         const { isDeleting } = this.state;
 
         return (
@@ -52,9 +47,9 @@ class MarkerItem extends React.Component {
                         <div className="sub-content">Longitude: {item.lng}</div>
                     </div>
                     <div className="card-footer">
-                        <button className="edit-btn" onClick={this._edit}>
+                        <button className="edit-btn" onClick={() => onMarkerEdit(item)}>
                             Edit
-                            </button>
+                        </button>
                         <button className="delete-btn" onClick={this._delete}>
                             {isDeleting ? <SpinnerSvg width={50} height={50} viewBox="0 0 100 115" /> : "Delete"}
                         </button>
@@ -63,6 +58,14 @@ class MarkerItem extends React.Component {
             </div>
         );
     }
+}
+
+MarkerItem.propTypes = {
+    item: tMapMarker,
+    onMarkerEdit: tFunc,
+    onMarkerRemove: tFunc,
+    onMarkerSelect: tFunc,
+    index: tNumber
 }
 
 export default MarkerItem;

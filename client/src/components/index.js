@@ -1,9 +1,9 @@
 import MedwingMap from './Medwing-Map';
-import SearchableMedwingMap from './Searchable-Medwing-Map';
+import MedwingMapSearchable from './Medwing-Map-Searchable';
 import MedwingLoadingIndicator from "./Medwing-Loading-Indicator";
 
 export {
     MedwingMap,
-    SearchableMedwingMap,
+    MedwingMapSearchable,
     MedwingLoadingIndicator
 }

@@ -4,9 +4,10 @@ import Geocode from 'react-geocode';
 import Layout from "./Layout";
 import { settings } from "Constants";
 
-class SearchableMedwingMap extends React.Component {
+class MedwingMapSearchable extends React.Component {
 
-    state = {}
+    state = {};
+
     componentWillReceiveProps(newProps) {
         const { selectedMarkers } = newProps;
         if (selectedMarkers)
@@ -18,6 +19,7 @@ class SearchableMedwingMap extends React.Component {
     }
 
     _geoFromAddress = async (address) => {
+        const { onSearch } = this.props;
         try {
             const response = await Geocode.fromAddress(address);
             const { lat, lng } = response.results[0].geometry.location;
@@ -25,6 +27,9 @@ class SearchableMedwingMap extends React.Component {
 
             const foundedMarker = { title: formattedAddress, lat, lng };
             this.setState({ foundedMarkers: [foundedMarker] });
+            if (onSearch) {
+                onSearch(foundedMarker);
+            }
         } catch (error) {
             // TODO: should have an error logger here
             toast.error("Address not found");
@@ -34,7 +39,7 @@ class SearchableMedwingMap extends React.Component {
     _handleFormSearch = submitEvent => {
         submitEvent.preventDefault();
         var address = this.elSearchInput.value;
-        this._geoFromAddress(address);
+        this._geoFromAddress(address);        
     }
 
     _setSearchInputRef = ref => this.elSearchInput = ref;
@@ -53,4 +58,4 @@ class SearchableMedwingMap extends React.Component {
     }
 }
 
-export default SearchableMedwingMap;
+export default MedwingMapSearchable;

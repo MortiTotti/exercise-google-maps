@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { getMarkers, addMarker, removeMarker } from "Actions";
 import Layout from "./Layout";
 
-class Home extends React.Component {
+class MarkersListView extends React.Component {
 
     state = {
         isLoading: false
@@ -44,7 +44,7 @@ class Home extends React.Component {
     }
 
     _onMarkerEdit = (marker) => {
-
+        this.props.history.push('data', { marker });
     }
 
     _gotoAddView = () => {
@@ -76,7 +76,6 @@ class Home extends React.Component {
                 selectedMarker={selectedMarker}
                 isLoading={isLoading}
                 gotoAddView={this._gotoAddView}
-                onMarkerAdd={this._onMarkerAdd}
                 onMarkerEdit={this._onMarkerEdit}
                 onMarkerRemove={this._onMarkerRemove}
                 onMarkerSelect={this._onMarkerSelect}
@@ -89,4 +88,4 @@ const mapStateToProps = ({ markers }) => ({
     markers: markers.markers
 });
 
-export default connect(mapStateToProps, { getMarkers, addMarker, removeMarker })(Home);
+export default connect(mapStateToProps, { getMarkers, addMarker, removeMarker })(MarkersListView);

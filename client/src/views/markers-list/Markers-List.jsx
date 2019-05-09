@@ -1,4 +1,5 @@
 import React from "react";
+import { tMapMarkers, tFunc } from 'Types';
 import MarkerItem from "./Marker-Item";
 
 const MarkersList = ({ items, onMarkerEdit, onMarkerRemove, onMarkerSelect }) =>
@@ -18,5 +19,12 @@ const MarkersList = ({ items, onMarkerEdit, onMarkerRemove, onMarkerSelect }) =>
             }
         </ul>
     </div>
+
+MarkersList.propTypes = {
+    items: tMapMarkers,
+    onMarkerEdit: tFunc,
+    onMarkerRemove: tFunc,
+    onMarkerSelect: tFunc
+}
 
 export default MarkersList;

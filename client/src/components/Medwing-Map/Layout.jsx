@@ -1,5 +1,6 @@
 import React from "react";
-import GoogleMap from "./vendor/Google-Map";
+import { tMapMarkers, tMapCenter } from 'Types';
+import GoogleMap from "./Google-Map";
 
 const Layout = ({ center, markers }) =>
     <div className="medwing-map-container">
@@ -14,5 +15,10 @@ const Layout = ({ center, markers }) =>
             </div>
         </div>
     </div>
+
+Layout.propTypes = {
+    markers: tMapMarkers.isRequired,
+    center: tMapCenter
+}
 
 export default Layout;

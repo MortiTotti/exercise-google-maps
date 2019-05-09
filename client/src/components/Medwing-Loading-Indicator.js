@@ -1,4 +1,5 @@
 import React from "react";
+import { tBool } from 'Types';
 import SpinnerSvg from "Assets/animation/spinner-svg";
 
 const MedwingLoadingIndicator = ({ isLoading }) =>
@@ -8,5 +9,9 @@ const MedwingLoadingIndicator = ({ isLoading }) =>
             <SpinnerSvg />
         </div>
     </div>
+
+MedwingLoadingIndicator.propTypes = {
+    isLoading: tBool.isRequired
+}
 
 export default MedwingLoadingIndicator;

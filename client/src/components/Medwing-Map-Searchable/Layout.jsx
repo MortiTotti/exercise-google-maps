@@ -1,4 +1,5 @@
 import React from "react";
+import { tMapMarkers, tMapCenter, tFunc } from 'Types';
 import MedwingMap from "../Medwing-Map";
 
 const Layout = ({ foundedMarkers, center, handleFormSearch, setSearchInputRef }) =>
@@ -27,5 +28,12 @@ const Layout = ({ foundedMarkers, center, handleFormSearch, setSearchInputRef })
             </div>
         </div>
     </div>
+
+Layout.propTypes = {
+    foundedMarkers: tMapMarkers.isRequired,
+    center: tMapCenter,
+    handleFormSearch: tFunc,
+    setSearchInputRef: tFunc
+}
 
 export default Layout;

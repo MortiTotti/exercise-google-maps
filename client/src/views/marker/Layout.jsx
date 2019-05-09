@@ -1,8 +1,8 @@
 import React from "react";
-import PropTypes from 'prop-types';
-import { SearchableMedwingMap, MedwingLoadingIndicator } from "Components";
+import { tMapMarkers, tMapMarker, tBool, tFunc } from 'Types';
+import { MedwingMapSearchable, MedwingLoadingIndicator } from "Components";
 
-const Layout = ({ setSearchInputRef, handleFormSearch, selectedMarker, isLoading, handleFormSubmit }) =>
+const Layout = ({ isLoading, selectedMarker, handleFormSearch, onBackClick, onAddressSearch }) =>
     <article className="offers-container">
         <MedwingLoadingIndicator isLoading={isLoading} />
         <div className="offers-title">
@@ -14,14 +14,17 @@ const Layout = ({ setSearchInputRef, handleFormSearch, selectedMarker, isLoading
                 <button type="submit">
                     Add
                 </button>
-                <button>
+                <button onClick={onBackClick}>
                     Back
                 </button>
             </form>
             <div className="row">
                 <div className="col-sm-12">
                     <div className="map">
-                        <SearchableMedwingMap />
+                        <MedwingMapSearchable
+                            selectedMarkers={[selectedMarker]}
+                            onSearch={onAddressSearch}
+                        />
                     </div>
                 </div>
             </div>
