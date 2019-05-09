@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { toast } from 'react-toastify';
+import { ServiceErrorHandler } from "Helpers";
 import { getMarkers, addMarker, removeMarker } from "Actions";
 import Layout from "./Layout";
+import "./styles.css";
 
 class MarkersListView extends React.Component {
 
@@ -18,8 +21,9 @@ class MarkersListView extends React.Component {
         this.setState({ isLoading: true }, async () => {
             try {
                 await getMarkers();
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                ServiceErrorHandler.error(error);
+                toast.error(error.message);
             } finally {
                 this.setState({ isLoading: false });
             }
@@ -35,8 +39,9 @@ class MarkersListView extends React.Component {
         this.setState({ isLoading: true }, async () => {
             try {
                 await addMarker(marker);
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                ServiceErrorHandler.error(error);
+                toast.error(error.message);
             } finally {
                 this.setState({ isLoading: false });
             }
@@ -44,11 +49,11 @@ class MarkersListView extends React.Component {
     }
 
     _onMarkerEdit = (marker) => {
-        this.props.history.push('data', { marker });
+        this.props.history.push(`marker/${marker.id}`);
     }
 
     _gotoAddView = () => {
-        this.props.history.push('data');
+        this.props.history.push('marker');
     }
 
     _onMarkerRemove = ({ marker }) => {

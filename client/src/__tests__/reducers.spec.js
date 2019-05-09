@@ -1,4 +1,4 @@
-import markersList from 'Reducers/markers-list'
+import mapMarkers from 'Reducers/map-markers'
 import { actionTypes } from 'Constants';
 
 describe('map marker list reducer', () => {
@@ -11,7 +11,7 @@ describe('map marker list reducer', () => {
         };
 
         // act
-        const actualState = markersList(undefined, {});
+        const actualState = mapMarkers(undefined, {});
 
         // assert
         expect(actualState).toEqual(expectedState);
@@ -27,7 +27,7 @@ describe('map marker list reducer', () => {
         };
 
         // act
-        const actualState = markersList(undefined,
+        const actualState = mapMarkers(undefined,
             {
                 type: actionTypes.MARKERS_LIST.LOAD_REQUESTED,
                 payload: undefined
@@ -47,7 +47,7 @@ describe('map marker list reducer', () => {
         };
 
         // act
-        const actualState = markersList(undefined,
+        const actualState = mapMarkers(undefined,
             {
                 type: actionTypes.MARKERS_LIST.LOAD_FAILED,
                 payload: "Some unexpected error happened"
@@ -67,7 +67,7 @@ describe('map marker list reducer', () => {
         };
 
         // act
-        const actualState = markersList(undefined,
+        const actualState = mapMarkers(undefined,
             {
                 type: actionTypes.MARKERS_LIST.LOAD_FAILED,
                 payload: undefined
@@ -92,7 +92,7 @@ describe('map marker list reducer', () => {
         };
 
         // act
-        const actualState = markersList(undefined,
+        const actualState = mapMarkers(undefined,
             {
                 type: actionTypes.MARKERS_LIST.LIST_RECEIVED,
                 payload: apiResult

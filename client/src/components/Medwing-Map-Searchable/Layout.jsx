@@ -1,8 +1,9 @@
 import React from "react";
 import { tMapMarkers, tMapCenter, tFunc } from 'Types';
 import MedwingMap from "../Medwing-Map";
+import MedwingButton from "../Medwing-Button";
 
-const Layout = ({ foundedMarkers, center, handleFormSearch, setSearchInputRef }) =>
+const Layout = ({ selectedMarkers, center, handleFormSearch, setSearchInputRef }) =>
     <div className="medwing-map-container">
         <form className="search-form" onSubmit={handleFormSearch}>
             <input
@@ -13,16 +14,16 @@ const Layout = ({ foundedMarkers, center, handleFormSearch, setSearchInputRef })
                 ref={setSearchInputRef}
                 required
             />
-            <button type="submit">
+            <MedwingButton type="submit" className="search-form-button">
                 Search
-            </button>
+            </MedwingButton>
         </form>
         <div className="row">
             <div className="col-sm-12">
                 <div className="map">
                     <MedwingMap
                         center={center}
-                        markers={foundedMarkers}
+                        markers={selectedMarkers}
                     />
                 </div>
             </div>
@@ -30,7 +31,7 @@ const Layout = ({ foundedMarkers, center, handleFormSearch, setSearchInputRef })
     </div>
 
 Layout.propTypes = {
-    foundedMarkers: tMapMarkers.isRequired,
+    selectedMarkers: tMapMarkers.isRequired,
     center: tMapCenter,
     handleFormSearch: tFunc,
     setSearchInputRef: tFunc

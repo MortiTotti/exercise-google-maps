@@ -1,0 +1,10 @@
+.map-and-list-layout {
+    display: flex;
+    flex-direction: row;
+}
+
+@media only screen and (max-width:768px) {
+    .map-and-list-layout {
+        flex-direction: column;
+    }
+}

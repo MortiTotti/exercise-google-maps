@@ -18,7 +18,7 @@ const GoogleMap =
     )(props => (
         <RGoogleMap
             defaultZoom={12}
-            center={props.center || settings.DEFAULT_MAP_CENTER_POINT}>
+            center={props.center}>
             {
                 props.markers.map((marker, index) =>
                     <Marker

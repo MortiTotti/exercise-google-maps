@@ -18,7 +18,7 @@ const Layout = ({ center, markers }) =>
 
 Layout.propTypes = {
     markers: tMapMarkers.isRequired,
-    center: tMapCenter
+    center: tMapCenter.isRequired
 }
 
 export default Layout;

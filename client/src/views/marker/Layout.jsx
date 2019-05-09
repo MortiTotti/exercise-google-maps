@@ -1,28 +1,26 @@
 import React from "react";
-import { tMapMarkers, tMapMarker, tBool, tFunc } from 'Types';
-import { MedwingMapSearchable, MedwingLoadingIndicator } from "Components";
+import { tMapMarker, tBool, tFunc } from 'Types';
+import { MedwingMapSearchable, MedwingLoadingIndicator, MedwingButton, MedwingBackButton } from "Components";
 
-const Layout = ({ isLoading, selectedMarker, handleFormSearch, onBackClick, onAddressSearch }) =>
+const Layout = ({ isLoading, selectedMarker, handleSubmitForm, onAddressSearch }) =>
     <article className="offers-container">
         <MedwingLoadingIndicator isLoading={isLoading} />
         <div className="offers-title">
-            Find the address
+            {`${selectedMarker ? selectedMarker.title : 'Find the address'}`}
         </div>
 
         <div className="medwing-map-container">
-            <form className="search-form" onSubmit={handleFormSearch}>
-                <button type="submit">
-                    Add
-                </button>
-                <button onClick={onBackClick}>
-                    Back
-                </button>
-            </form>
+            <div className="search-form">
+                <MedwingButton onClick={handleSubmitForm}>
+                    Save
+                </MedwingButton>
+                <MedwingBackButton />
+            </div>
             <div className="row">
                 <div className="col-sm-12">
                     <div className="map">
                         <MedwingMapSearchable
-                            selectedMarkers={[selectedMarker]}
+                            selectedMarkers={selectedMarker ? [selectedMarker] : []}
                             onSearch={onAddressSearch}
                         />
                     </div>
@@ -30,25 +28,12 @@ const Layout = ({ isLoading, selectedMarker, handleFormSearch, onBackClick, onAd
             </div>
         </div>
     </article>
-/*
-    <article className="offers-container">
-        <form onSubmit={handleFormSubmit}>
-            <MedwingLoadingIndicator isLoading={isLoading} />
-            <div className="offers-title">
-                Find the address
-            </div>
-            <div className="map-and-list-layout">
-                <MedwingMap
-                    markers={selectedMarker}
-                    selectedMarker={selectedMarker}
-                />
-            </div>
-        </form>
-    </article>
 
 Layout.propTypes = {
-    onMarkerAdd: PropTypes.func.isRequired,
-    isLoading: PropTypes.bool.isRequired,
-}*/
+    isLoading: tBool.isRequired,
+    selectedMarker: tMapMarker,
+    handleSubmitForm: tFunc.isRequired,
+    onAddressSearch: tFunc.isRequired
+}
 
 export default Layout;

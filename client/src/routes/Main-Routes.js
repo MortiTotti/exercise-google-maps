@@ -9,8 +9,9 @@ const MainRoutes = () =>
         <React.Fragment>
             <Switch>
                 <Route exact path='/' component={MarkersListView} />
+                <Route exact path='/marker' component={MarkerView} />
                 <Route path='/marker/:id' component={MarkerView} />
-                <Route path='/notfound' component={NotFoundView}></Route>
+                <Route component={NotFoundView}></Route>
             </Switch>
         </React.Fragment>
     </Router>

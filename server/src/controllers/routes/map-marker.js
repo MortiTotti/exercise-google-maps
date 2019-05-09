@@ -5,9 +5,14 @@ const route = Router();
 export default (app) => {
     app.use('/mapmarker', route);
 
-    route.get('/', async (req, res, next) => {
+    route.get('/:id?', async (req, res, next) => {
         try {
-            const result = await (new MapMarkerService()).getAllMarkers();
+            let result;
+            if (req.params.id)
+                result = await (new MapMarkerService()).getById(req.params.id);
+            else
+                result = await (new MapMarkerService()).getAll();
+
             return res.json({
                 status: true,
                 result
@@ -31,9 +36,10 @@ export default (app) => {
         }
     });
 
-    route.put('/', async (req, res, next) => {
+    route.put('/:id', async (req, res, next) => {
         try {
             const result = await (new MapMarkerService()).updateMarker({ id: req.params.id, marker: req.body });
+            console.log(result);
             return res.json({
                 status: true,
                 result

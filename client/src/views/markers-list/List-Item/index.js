@@ -1,6 +1,8 @@
 import React from "react";
 import { tMapMarker, tNumber, tFunc } from 'Types';
 import SpinnerSvg from "Assets/animation/spinner-svg";
+import { MedwingButton } from "Components";
+import "./styles.css";
 
 class MarkerItem extends React.Component {
     _isMounted = false;
@@ -47,12 +49,12 @@ class MarkerItem extends React.Component {
                         <div className="sub-content">Longitude: {item.lng}</div>
                     </div>
                     <div className="card-footer">
-                        <button className="edit-btn" onClick={() => onMarkerEdit(item)}>
+                        <MedwingButton className="edit-btn" onClick={() => onMarkerEdit(item)}>
                             Edit
-                        </button>
-                        <button className="delete-btn" onClick={this._delete}>
+                        </MedwingButton>
+                        <MedwingButton className="delete-btn" onClick={this._delete}>
                             {isDeleting ? <SpinnerSvg width={50} height={50} viewBox="0 0 100 115" /> : "Delete"}
-                        </button>
+                        </MedwingButton>
                     </div>
                 </li>
             </div>

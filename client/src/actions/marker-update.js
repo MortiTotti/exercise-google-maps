@@ -2,32 +2,32 @@ import { actionTypes, urls } from 'Constants';
 import { HttpClient } from 'Helpers';
 
 //-------------------- action initializiation
-const { MARKERS_LIST: actionType } = actionTypes;
+const { MARKERS_UPDATE: actionType } = actionTypes;
 
 //-------------------- action creators
 const _requested = () => ({
-    type: actionType.LOAD_REQUESTED
+    type: actionType.UPDATE_REQUESTED
 });
 
 const _failed = (message) => ({
-    type: actionType.LOAD_FAILED,
+    type: actionType.UPDATE_FAILED,
     payload: message
 });
 
 const _received = (result) => ({
-    type: actionType.LIST_RECEIVED,
+    type: actionType.UPDATE_SUCCEEDED,
     payload: result
 });
 
 //-------------------- methods
-const _api = () => HttpClient().getAsync(`${urls.MARKERS}`);
+const _api = ({ id, marker }) => HttpClient().putAsync(`${urls.MARKERS}/${id}`, marker);
 
-export const getMarkers = () => async (dispatch) => {
+export const updateMarker = (request) => async (dispatch) => {
     dispatch(_requested());
     try {
-        let { status, message, result } = await _api();
+        let { status, message, result } = await _api(request);
         if (status) {
-            dispatch(_received(result));
+            dispatch(_received({ id: request.id, marker: result }));
             return Promise.resolve(message);
         } else {
             dispatch(_failed(message));

@@ -1,8 +1,10 @@
 * {
+  -webkit-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 body {
+  padding: 0;
   margin: 0;
   font-size: 16px;
 }
@@ -12,21 +14,9 @@ body {
   src: url("../../assets/fonts/roboto.regular.ttf");
 }
 
-button {
-  width: 80px;
-}
-
 .offers-container {
   padding: 20px 20px 20px 20px;
   font-family: "Roboto";
-}
-
-/*------------LOGO------------*/
-
-.logo {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 32px;
 }
 
 /*----------------Titles----------------*/
@@ -44,190 +34,13 @@ button {
   margin-bottom: 16px;
 }
 
-/*------------LODING------------*/
-
-.Loading-container {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10;
-}
-
-.overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-}
-
-.loading-contnet {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  height: 100vh;
-}
-
 /*--------------------more styles for maps and lists**/
-
-.map {
-}
-
-.map-and-list-layout {
-  display: flex;
-  flex-direction: row;
-}
-
-.makers-list-container {
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  margin-top: 17px;
-  padding: 10px
-}
-
 .medwing-map-container {
   flex: 1;
   min-width: 400px;
 }
 
-.search-form {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 10px;
-}
-
-.search-input {
-  border: 1px solid rgb(207, 207, 207);
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
-  padding: 8px 10px;
-  flex: 1;
-}
-
-.search-form button {
-  border: 1px solid rgb(207, 207, 207);
-  border-left: none;
-  cursor: pointer;
-  font-weight: 600;
-  padding: 8px 10px;
-  background-color: #4E66A2;
-  color: white;
-}
-
-.search-form button:last-child {
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  color: black;
-  background-color: #C4EEB4;
-}
-
-.search-form button:hover {
-  background-color: rgb(207, 207, 207);
-}
-
-/*--------------------Card---*/
-
-.makers-list-container>ul {
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  grid-template-rows: repeat(auto-fit, minmax(200px, 200px));
-  grid-gap: 35px;
-  list-style-type: none;
-  padding: 0;
-}
-
-.card {
-  position: relative;
-  border: 1px solid rgb(207, 207, 207);
-  border-radius: 5px;
-  box-shadow: 1px 1px 5px #ccc;
-  height: 100%;
-  max-width: 350px;
-}
-
-.card-content {
-  padding: 10px 10px 55px 10px;
-}
-
-.card-title {
-  color: rgb(66, 66, 172);
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 8px;
-  cursor: pointer;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  height: 1.2em;
-  white-space: nowrap;
-}
-
-.card-subtitle {
-  font-size: 13px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  line-height: 30px;
-  white-space: nowrap;
-}
-
-.sub-content {
-  font-size: 13px;
-  line-height: 30px;
-}
-
-.card-footer {
-  position: absolute;
-  bottom: 0;
-  border-top: 1px solid rgb(207, 207, 207);
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  width: 100%;
-}
-
-.card-footer button {
-  background-color: #ffffff;
-  cursor: pointer;
-  outline: none;
-  border-radius: 5px;
-  font-weight: 600;
-  width: 80px;
-  height: 30px;
-  transition: all 0.2s ease;
-}
-
-.edit-btn {
-  border: 2px solid rgb(59, 165, 67);
-  color: rgb(59, 165, 67);
-}
-
-.edit-btn:hover {
-  box-shadow: 1px 1px 6px rgb(59, 165, 67);
-  background-color: rgb(59, 165, 67);
-  color: #ffffff;
-}
-
-.delete-btn {
-  border: 2px solid rgb(216, 27, 27);
-  color: rgb(216, 27, 27);
-  margin-left: 10px;
-}
-
-.delete-btn:hover {
-  box-shadow: 1px 1px 6px rgb(216, 27, 27);
-  background-color: rgb(216, 27, 27);
-  color: #ffffff;
-}
-
 /*----------------Divider----------------*/
-
 .divider {
   background-color: #E8E8E8;
   width: 100%;
@@ -236,26 +49,9 @@ button {
 }
 
 /*----------------Responsive----------------*/
-
-@media only screen and (max-width:768px) {
-  .map-and-list-layout {
-    flex-direction: column;
-  }
-}
-
 @media only screen and (max-width:450px) {
   .medwing-map-container {
     min-width: auto;
   }
 }
 
-@media only screen and (max-width:320px) {
-  .makers-list-container>ul {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    grid-gap: auto;
-  }
-  .search-input {
-    flex: 1;
-    width: 100%;
-  }
-}

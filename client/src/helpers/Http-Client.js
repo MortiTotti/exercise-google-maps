@@ -16,9 +16,6 @@ const HttpClient = (token) => {
                     'Content-Type': 'application/json',
                 },
             };
-            if (token) {
-                options.headers.Authorization = 'Bearer ' + token;
-            }
 
             if (params) {
                 const urlParams = objToQueryString(params);
@@ -36,9 +33,18 @@ const HttpClient = (token) => {
                 },
                 body: JSON.stringify(body),
             };
-            if (token) {
-                options.headers.Authorization = 'Bearer ' + token;
-            }
+
+            return await http(url, options)
+        },
+        putAsync: async (url, body) => {
+            const options = {
+                method: 'PUT',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body),
+            };
 
             return await http(url, options)
         },
@@ -50,23 +56,9 @@ const HttpClient = (token) => {
                     'Content-Type': 'application/json',
                 },
             };
-            if (token) {
-                options.headers.Authorization = 'Bearer ' + token;
-            }
+
             return await http(url, options)
-        },
-        sendAsync: async (url, body, config) => {
-            const options = {
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                ...config
-            };
-            if (config.method === 'POST') {
-                options.body = body;
-            }
-            return await http(url, options)
-        },
+        }
     };
 }
 

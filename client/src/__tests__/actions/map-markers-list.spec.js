@@ -9,7 +9,7 @@ import expect from 'expect';
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-describe('async actions', () => {
+describe('map markers list async actions', () => {
     afterEach(() => {
         fetchMock.reset()
         fetchMock.restore()

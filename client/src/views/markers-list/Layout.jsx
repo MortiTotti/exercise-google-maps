@@ -1,7 +1,7 @@
 import React from "react";
 import { tMapMarkers, tMapMarker, tBool, tFunc } from 'Types';
-import { MedwingMap, MedwingLoadingIndicator } from "Components";
-import MarkersList from "./Markers-List";
+import { MedwingMap, MedwingButton, MedwingLoadingIndicator } from "Components";
+import MarkersList from "./List";
 
 const Layout = ({ markers, selectedMarker, isLoading, onMarkerEdit, onMarkerRemove, onMarkerSelect, gotoAddView }) =>
     <article className="offers-container">
@@ -11,7 +11,7 @@ const Layout = ({ markers, selectedMarker, isLoading, onMarkerEdit, onMarkerRemo
                 center={selectedMarker}
                 markers={markers}
             />
-        <button onClick={gotoAddView}>Add</button>
+            <MedwingButton onClick={gotoAddView}>Add</MedwingButton>
             <MarkersList
                 items={markers}
                 onMarkerEdit={onMarkerEdit}
