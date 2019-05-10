@@ -101,7 +101,7 @@ The configuration file for this application can be found in in the following pat
 
 ### Screen shots
 ##### markers list screen
-<img src="https://github.com/MortiTotti/exercise-google-maps/blob/master/screenshots/markers-list.png" width="750" aspectRatio="1/2">
+<img src="https://github.com/MortiTotti/exercise-google-maps/blob/master/screenshots/markers-list.png" width="800" aspectRatio="1/2">
 
 ##### marker screen
-<img src="https://github.com/MortiTotti/exercise-google-maps/blob/master/screenshots/marker.png" width="750" aspectRatio="1/2">
+<img src="https://github.com/MortiTotti/exercise-google-maps/blob/master/screenshots/marker.png" width="800" aspectRatio="1/2">
