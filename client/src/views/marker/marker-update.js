@@ -1,8 +1,7 @@
 import React from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { toast } from 'react-toastify';
-import { tString, tFunc } from 'Types';
+import { tString } from 'Types';
 import { ServiceErrorHandler } from "Helpers";
 import { getMarker, updateMarker } from "Actions";
 import Layout from "./Layout";
@@ -42,7 +41,7 @@ class MarkerViewUpdate extends React.Component {
         submitEvent.preventDefault();
         const { selectedMarker } = this.state;
 
-        const { history, updateMarker, id } = this.props;
+        const { history, id } = this.props;
         this.setState({ isLoading: true }, async () => {
             try {
                 await updateMarker({ id, marker: selectedMarker });
@@ -70,8 +69,7 @@ class MarkerViewUpdate extends React.Component {
 }
 
 MarkerViewUpdate.propTypes = {
-    updateMarker: tFunc.isRequired,
     id: tString.isRequired
 }
 
-export default connect(null, { updateMarker })(withRouter(MarkerViewUpdate));
+export default withRouter(MarkerViewUpdate);

@@ -1,8 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { toast } from 'react-toastify';
-import { tFunc } from 'Types';
 import { ServiceErrorHandler } from "Helpers";
 import { addMarker } from "Actions";
 import Layout from "./Layout";
@@ -33,7 +31,7 @@ class MarkerViewInsert extends React.Component {
         const { selectedMarker } = this.state;
         if (!this._isFormValid(selectedMarker)) return;
 
-        const { history, addMarker } = this.props;
+        const { history } = this.props;
         this.setState({ isLoading: true }, async () => {
             try {
                 await addMarker(selectedMarker);
@@ -60,8 +58,4 @@ class MarkerViewInsert extends React.Component {
     }
 }
 
-MarkerViewInsert.propTypes = {
-    addMarker: tFunc.isRequired
-}
-
-export default connect(undefined, { addMarker })(withRouter(MarkerViewInsert));
+export default withRouter(MarkerViewInsert);

@@ -8,7 +8,7 @@ const mapMarkersRemove = (state, action) => {
 
     switch (type) {
         case actionType.REMVOE_REQUESTED: {
-            return Object.assign({}, state, { isLoading: true, error: null });
+            return Object.assign({}, state, { isLoading: true, error: { message: "" } });
         }
         case actionType.REMOVE_FAILED: {
             // TODO: reducer logger >> must call an error logger
@@ -19,7 +19,7 @@ const mapMarkersRemove = (state, action) => {
         }
         case actionType.REMOVE_SUCCEEDED: {
             const newMarkers = state.markers.filter(t => t.id !== payload);
-            return Object.assign({}, state, { isLoading: false, markers: newMarkers, error: null });
+            return Object.assign({}, state, { isLoading: false, markers: newMarkers, error: { message: "" } });
         }
         default: return state;
     }

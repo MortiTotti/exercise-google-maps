@@ -8,7 +8,7 @@ const mapMarkersList = (state, action) => {
 
     switch (type) {
         case actionType.LOAD_REQUESTED: {
-            return Object.assign({}, state, { isLoading: true, error: null });
+            return Object.assign({}, state, { isLoading: true, error: { message: "" } });
         }
         case actionType.LOAD_FAILED: {
             // TODO: reducer logger >> must call an error logger
@@ -18,7 +18,7 @@ const mapMarkersList = (state, action) => {
             });
         }
         case actionType.LIST_RECEIVED: {
-            return Object.assign({}, state, { isLoading: false, markers: payload, error: null });
+            return Object.assign({}, state, { isLoading: false, markers: payload, error: { message: "" } });
         }
         default: return state;
     }

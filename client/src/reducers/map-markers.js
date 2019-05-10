@@ -1,6 +1,4 @@
 import mapMarkersList from "./map-markers-list";
-import mapMarkersAdd from "./map-markers-add";
-import mapMarkersUpdate from "./map-markers-update";
 import mapMarkersRemove from "./map-markers-remove";
 
 //-------------------- reducer initializiation
@@ -13,8 +11,6 @@ const initState = {
 //-------------------- reducer implementation
 const markersList = (state = initState, action) => {
     state = mapMarkersList(state, action);
-    state = mapMarkersAdd(state, action);
-    state = mapMarkersUpdate(state, action);
     state = mapMarkersRemove(state, action);
     return state;
 };

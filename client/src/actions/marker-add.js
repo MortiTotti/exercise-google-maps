@@ -1,40 +1,17 @@
-import { actionTypes, urls } from 'Constants';
+import { urls } from 'Constants';
 import { HttpClient } from 'Helpers';
 
-//-------------------- action initializiation
-const { MARKERS_ADD: actionType } = actionTypes;
-
-//-------------------- action creators
-const _requested = () => ({
-    type: actionType.ADD_REQUESTED
-});
-
-const _failed = (message) => ({
-    type: actionType.ADD_FAILED,
-    payload: message
-});
-
-const _received = (result) => ({
-    type: actionType.ADD_SUCCEEDED,
-    payload: result
-});
-
-//-------------------- methods
 const _api = (data) => HttpClient().postAsync(`${urls.MARKERS}`, data);
 
-export const addMarker = (request) => async (dispatch) => {
-    dispatch(_requested());
+export const addMarker = async (request) => {
     try {
         let { status, message, result } = await _api(request);
         if (status) {
-            dispatch(_received(result));
-            return Promise.resolve(message);
+            return Promise.resolve(result);
         } else {
-            dispatch(_failed(message));
             return Promise.reject({ message });
         }
     } catch (error) {
-        dispatch(_failed({ message: error.message || error }));
         return Promise.reject(error);
     }
 };

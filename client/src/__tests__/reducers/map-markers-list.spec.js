@@ -22,7 +22,7 @@ describe('map marker list reducer', () => {
         // arrange
         const expectedState = {
             isLoading: true,
-            error: null,
+            error: { message: "" },
             markers: []
         };
 
@@ -87,7 +87,7 @@ describe('map marker list reducer', () => {
         // arrange
         const expectedState = {
             isLoading: false,
-            error: null,
+            error: { message: "" },
             markers: apiResult
         };
 

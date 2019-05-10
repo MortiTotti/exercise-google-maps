@@ -63,8 +63,9 @@ class MarkersListView extends React.Component {
         this.setState({ isLoading: true }, async () => {
             try {
                 await removeMarker(marker.id);
-            } catch (err) {
-                console.log(err);
+            } catch (error) {
+                ServiceErrorHandler.error(error);
+                toast.error(error.message);
             } finally {
                 this.setState({ isLoading: false });
             }

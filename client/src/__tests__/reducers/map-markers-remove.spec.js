@@ -1,21 +1,21 @@
 import mapMarkers from 'Reducers/map-markers'
 import { actionTypes } from 'Constants';
 
-describe('map marker add reducer', () => {
+describe('map marker remove reducer', () => {
 
-    it('should handle the map marker add request action', () => {
+    it('should handle the map marker remove request action', () => {
 
         // arrange
         const expectedState = {
             isLoading: true,
-            error: null,
+            error: { message: "" },
             markers: []
         };
 
         // act
         const actualState = mapMarkers(undefined,
             {
-                type: actionTypes.MARKERS_ADD.ADD_REQUESTED,
+                type: actionTypes.MARKERS_REMOVE.REMVOE_REQUESTED,
                 payload: undefined
             });
 
@@ -23,7 +23,7 @@ describe('map marker add reducer', () => {
         expect(actualState).toEqual(expectedState);
     });
 
-    it('should handle the add map marker failed action', () => {
+    it('should handle the remove map marker failed action', () => {
 
         // arrange
         const expectedState = {
@@ -35,7 +35,7 @@ describe('map marker add reducer', () => {
         // act
         const actualState = mapMarkers(undefined,
             {
-                type: actionTypes.MARKERS_ADD.ADD_FAILED,
+                type: actionTypes.MARKERS_REMOVE.REMOVE_FAILED,
                 payload: "Some unexpected error happened"
             });
 
@@ -43,7 +43,7 @@ describe('map marker add reducer', () => {
         expect(actualState).toEqual(expectedState);
     });
 
-    it('should handle the add map marker failed action when no error message passed', () => {
+    it('should handle the remove map marker failed action when no error message passed', () => {
 
         // arrange
         const expectedState = {
@@ -55,7 +55,7 @@ describe('map marker add reducer', () => {
         // act
         const actualState = mapMarkers(undefined,
             {
-                type: actionTypes.MARKERS_ADD.ADD_FAILED,
+                type: actionTypes.MARKERS_REMOVE.REMOVE_FAILED,
                 payload: undefined
             });
 
@@ -63,22 +63,28 @@ describe('map marker add reducer', () => {
         expect(actualState).toEqual(expectedState);
     });
 
-    it('should handle the add map marker successfull action', () => {
+    it('should handle the remove map marker successfull action', () => {
 
-        const apiResult = { id: 'newid12345', title: 'Berlin', lat: 9.9, lng: 10.2 };
+        const removedMarker = { id: 'newid12345', title: 'Berlin', lat: 9.9, lng: 10.2 };
 
         // arrange
+        const initialState = {
+            isLoading: false,
+            error: { message: "" },
+            markers: [removedMarker]
+        };
+
         const expectedState = {
             isLoading: false,
-            error: null,
-            markers: [apiResult]
+            error: { message: "" },
+            markers: []
         };
 
         // act
-        const actualState = mapMarkers(undefined,
+        const actualState = mapMarkers(initialState,
             {
-                type: actionTypes.MARKERS_ADD.ADD_SUCCEEDED,
-                payload: apiResult
+                type: actionTypes.MARKERS_REMOVE.REMOVE_SUCCEEDED,
+                payload: 'newid12345'
             });
 
         // assert
