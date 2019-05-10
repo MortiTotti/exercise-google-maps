@@ -1,4 +1,4 @@
-# React Google map exmaple
+# React Google map example
 A React application to work with the Google Map and Google GeoCode with Node-Js as back-end
 
 ## Explanation
@@ -101,7 +101,7 @@ The configuration file for this application can be found in in the following pat
 
 ### Screen shots
 ##### markers list screen
-<img src="https://github.com/MortiTotti/exercise-google-maps/blob/master/screenshots/marker-list.png" width="600" aspectRatio="1/2">
+<img src="https://github.com/MortiTotti/exercise-google-maps/blob/master/screenshots/markers-list.png" width="600" aspectRatio="1/2">
 
 ##### marker screen
 <img src="https://github.com/MortiTotti/exercise-google-maps/blob/master/screenshots/marker.png" width="600" aspectRatio="1/2">
