@@ -24,7 +24,7 @@ class MedwingMapSearchable extends React.Component {
                 onSearch(foundedMarker);
             }
         } catch (error) {
-            ServiceErrorHandler.error(error);
+            ServiceErrorHandler().error(error);
             toast.error("Address not found");
         }
     }

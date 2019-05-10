@@ -22,7 +22,7 @@ class MarkersListView extends React.Component {
             try {
                 await getMarkers();
             } catch (error) {
-                ServiceErrorHandler.error(error);
+                ServiceErrorHandler().error(error);
                 toast.error(error.message);
             } finally {
                 this.setState({ isLoading: false });
@@ -40,7 +40,7 @@ class MarkersListView extends React.Component {
             try {
                 await addMarker(marker);
             } catch (error) {
-                ServiceErrorHandler.error(error);
+                ServiceErrorHandler().error(error);
                 toast.error(error.message);
             } finally {
                 this.setState({ isLoading: false });
@@ -56,18 +56,20 @@ class MarkersListView extends React.Component {
         this.props.history.push('marker');
     }
 
-    _onMarkerRemove = ({ marker }) => {
+    _onMarkerRemove = ({ marker }, fnCallback) => {
         const { removeMarker } = this.props;
         if (!removeMarker) return;
-        
+
         this.setState({ isLoading: true }, async () => {
             try {
                 await removeMarker(marker.id);
             } catch (error) {
-                ServiceErrorHandler.error(error);
+                ServiceErrorHandler().error(error);
                 toast.error(error.message);
             } finally {
                 this.setState({ isLoading: false });
+                if (fnCallback)
+                    fnCallback();
             }
         });
     }

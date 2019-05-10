@@ -17,14 +17,15 @@ class MarkerViewUpdate extends React.Component {
     }
 
     _getMarker = async () => {
-        const { id } = this.props;
+        const { id, history } = this.props;
         this.setState({ isLoading: true }, async () => {
             try {
                 const selectedMarker = await getMarker(id);
                 this.setState({ selectedMarker });
             } catch (error) {
-                ServiceErrorHandler.error(error);
+                ServiceErrorHandler().error(error);
                 toast.error(error.message);
+                history.goBack();
             } finally {
                 this.setState({ isLoading: false });
             }

@@ -22,11 +22,11 @@ class MarkerItem extends React.Component {
     _delete = () => {
         const { index, item, onMarkerRemove } = this.props;
         if (!onMarkerRemove) return;
-        this.setState({ isDeleting: true },
-            () => {
-                onMarkerRemove({ marker: item, index },
-                    () => (this._isMounted) ? this.setState({ isDeleting: false }) : null);
-            });
+
+        this.setState({ isDeleting: true }, () => {
+            onMarkerRemove({ marker: item, index },
+                (this._isMounted) ? this.setState({ isDeleting: false }) : null);
+        });
     }
 
     _select = () => {

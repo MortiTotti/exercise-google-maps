@@ -7,7 +7,7 @@ class MedwingErrorHandler extends React.Component {
 
     componentDidCatch(error, info) {
         this.setState({ hasError: true })
-        ServiceErrorHandler.fatalError({ error, info });
+        ServiceErrorHandler().fatalError({ error, info });
     }
 
     render() {

@@ -37,7 +37,7 @@ class MarkerViewInsert extends React.Component {
                 await addMarker(selectedMarker);
                 history.goBack();
             } catch (error) {
-                ServiceErrorHandler.error(error);
+                ServiceErrorHandler().error(error);
                 toast.error(error.message);
             } finally {
                 this.setState({ isLoading: false });
