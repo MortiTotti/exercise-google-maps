@@ -2,6 +2,7 @@ import React from "react";
 import { tMapMarkers, tMapCenter } from 'Types';
 import { settings } from "Constants";
 import Layout from "./Layout";
+import "./styles.css";
 
 class MedwingMap extends React.Component {
 

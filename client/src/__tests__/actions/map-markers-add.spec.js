@@ -1,7 +1,7 @@
 
 import configureMockStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { getMarkers } from "Actions";
+import { addMarker } from "Actions";
 import { actionTypes, urls } from 'Constants';
 import fetchMock from 'fetch-mock';
 import expect from 'expect';
@@ -15,48 +15,43 @@ describe('map markers add async actions', () => {
         fetchMock.restore()
     })
 
-    it('creates MARKER_ADD.LIST_RECEIVED action type when fetching map markers has done', () => {
+    const request = { title: 'Leipzig', lat: 51.33, lng: 12.37 };
+
+    it('creates MARKERS_ADD.ADD_SUCCEEDED action type when adding a map marker succeed', () => {
         // arrange
         const url = `${urls.MARKERS}`;
-        const result = [
-            {
-                id: 'newid1200045',
-                title: 'Leipzig',
-                lat: 51.33,
-                lng: 12.37
-            }
-        ];
+        const response = { id: 'newid1200045', ...request };
 
         fetchMock
-            .getOnce(url,
+            .postOnce(url,
                 {
                     body: {
                         "status": true,
-                        "result": result
+                        "result": response
                     },
                     headers: { 'content-type': 'application/json' }
                 }
             );
 
         const expectedActions = [
-            { type: actionTypes.MARKERS_LIST.LOAD_REQUESTED, payload: undefined },
-            { type: actionTypes.MARKERS_LIST.LIST_RECEIVED, payload: result }
+            { type: actionTypes.MARKERS_ADD.ADD_REQUESTED, payload: undefined },
+            { type: actionTypes.MARKERS_ADD.ADD_SUCCEEDED, payload: response }
         ]
         const store = mockStore({ markers: {} })
 
         // act, assert
-        return store.dispatch(getMarkers()).then(() => {
+        return store.dispatch(addMarker(request)).then(() => {
             expect(store.getActions()).toEqual(expectedActions)
         })
     });
 
-    it('creates MARKERS_LIST.LOAD_FAILED action type when fetching map markers has failed', () => {
+    it('creates MARKERS_ADD.ADD_FAILED action type when adding a map marker failed', () => {
         // arrange
         const url = `${urls.MARKERS}`;
         const message = "Some unexpected error";
 
         fetchMock
-            .getOnce(url,
+            .postOnce(url,
                 {
                     body: {
                         "status": false,
@@ -67,13 +62,13 @@ describe('map markers add async actions', () => {
             );
 
         const expectedActions = [
-            { type: actionTypes.MARKERS_LIST.LOAD_REQUESTED, payload: undefined },
-            { type: actionTypes.MARKERS_LIST.LOAD_FAILED, payload: message }
+            { type: actionTypes.MARKERS_ADD.ADD_REQUESTED, payload: undefined },
+            { type: actionTypes.MARKERS_ADD.ADD_FAILED, payload: message }
         ]
         const store = mockStore({ markers: {} })
 
         // act, assert
-        return store.dispatch(getMarkers())
+        return store.dispatch(addMarker(request))
             .catch(() => {
                 expect(store.getActions()).toEqual(expectedActions)
             });

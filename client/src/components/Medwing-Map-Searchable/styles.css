@@ -5,7 +5,7 @@
 }
 
 .search-input {
-    border: 1px solid rgb(207, 207, 207);
+    border: 1px solid #cfcfcf;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
     padding: 8px 10px;
@@ -13,17 +13,20 @@
 }
 
 .search-form-button {
-    border-left: none;
+    border: none;    
     font-weight: 600;
     padding: 8px 10px;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    background-color: #4E66A2;
+    background-color: #a5aff7;
     color: white;
 }
-
+.search-map{
+    min-height: 500px;
+    height: 77vh;
+}
 .search-form-button:hover {
-    background-color: rgb(207, 207, 207);
+    box-shadow: 1px 1px 6px #95a2f9;
 }
 
 @media only screen and (max-width:320px) {

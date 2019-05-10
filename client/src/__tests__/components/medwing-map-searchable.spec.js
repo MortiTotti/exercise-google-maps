@@ -1,18 +1,18 @@
 import React from 'react';
-import { MedwingMap } from 'Components';
+import { MedwingMapSearchable } from 'Components';
 import Enzyme, { shallow, mount } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('Medwing Map component', () => {
+describe('Medwing Map Searchable component', () => {
 
-    const mockCenter = { lng: 51.0, lat: 52.0 }
-    const mockMarkers = [];
+    const mockSelectedMarkers = [];
+    const mockOnSearch = jest.fn();
 
     it('should render correctly', () => {
         const component = shallow(
-            <MedwingMap center={mockCenter} markers={mockMarkers} />
+            <MedwingMapSearchable onSearch={mockOnSearch} selectedMarkers={mockSelectedMarkers} />
         );
 
         expect(component).toMatchSnapshot();

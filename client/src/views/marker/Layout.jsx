@@ -3,28 +3,26 @@ import { tMapMarker, tBool, tFunc } from 'Types';
 import { MedwingMapSearchable, MedwingLoadingIndicator, MedwingButton, MedwingBackButton } from "Components";
 
 const Layout = ({ isLoading, selectedMarker, handleSubmitForm, onAddressSearch }) =>
-    <article className="offers-container">
+    <article className="find-container">
         <MedwingLoadingIndicator isLoading={isLoading} />
-        <div className="offers-title">
-            {`${selectedMarker ? selectedMarker.title : 'Find the address'}`}
+        <div className="header-layout">
+            <div className="offers-title">
+                {`${selectedMarker ? selectedMarker.title : 'Find the address'}`}
+            </div>
+            <div className="btns-group">
+                <MedwingBackButton />
+                <MedwingButton className="save-btn" onClick={handleSubmitForm}>
+                    Save
+                </MedwingButton>
+            </div>
         </div>
 
         <div className="medwing-map-container">
-            <div className="search-form">
-                <MedwingButton onClick={handleSubmitForm}>
-                    Save
-                </MedwingButton>
-                <MedwingBackButton />
-            </div>
-            <div className="row">
-                <div className="col-sm-12">
-                    <div className="map">
-                        <MedwingMapSearchable
-                            selectedMarkers={selectedMarker ? [selectedMarker] : []}
-                            onSearch={onAddressSearch}
-                        />
-                    </div>
-                </div>
+            <div className="map">
+                <MedwingMapSearchable
+                    selectedMarkers={selectedMarker ? [selectedMarker] : []}
+                    onSearch={onAddressSearch}
+                />
             </div>
         </div>
     </article>

@@ -18,15 +18,11 @@ const Layout = ({ selectedMarkers, center, handleFormSearch, setSearchInputRef }
                 Search
             </MedwingButton>
         </form>
-        <div className="row">
-            <div className="col-sm-12">
-                <div className="map">
-                    <MedwingMap
-                        center={center}
-                        markers={selectedMarkers}
-                    />
-                </div>
-            </div>
+        <div className="search-map">
+            <MedwingMap
+                center={center}
+                markers={selectedMarkers}
+            />
         </div>
     </div>
 

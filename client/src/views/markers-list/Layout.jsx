@@ -7,16 +7,20 @@ const Layout = ({ markers, selectedMarker, isLoading, onMarkerEdit, onMarkerRemo
     <article className="offers-container">
         <MedwingLoadingIndicator isLoading={isLoading} />
         <div className="map-and-list-layout">
-            <MedwingMap
-                center={selectedMarker}
-                markers={markers}
-            />
-            <MedwingButton onClick={gotoAddView}>Add</MedwingButton>
-            <MarkersList
-                items={markers}
-                onMarkerEdit={onMarkerEdit}
-                onMarkerSelect={onMarkerSelect}
-                onMarkerRemove={onMarkerRemove} />
+            <div className="first-map">
+                <MedwingMap
+                    center={selectedMarker}
+                    markers={markers}
+                />
+            </div>
+            <div className="add-list">
+                <MedwingButton className="add-btn" onClick={gotoAddView}>Add</MedwingButton>
+                <MarkersList
+                    items={markers}
+                    onMarkerEdit={onMarkerEdit}
+                    onMarkerSelect={onMarkerSelect}
+                    onMarkerRemove={onMarkerRemove} />
+            </div>
         </div>
     </article>
 

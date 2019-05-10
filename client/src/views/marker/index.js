@@ -1,6 +1,7 @@
 import React from "react";
 import MarkerInsert from "./marker-insert";
 import MarkerUpdate from "./marker-update";
+import "./styles.css";
 
 class MarkerView extends React.Component {
 

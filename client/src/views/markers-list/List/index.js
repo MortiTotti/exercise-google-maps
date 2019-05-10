@@ -1,6 +1,7 @@
 import React from "react";
 import { tMapMarkers, tFunc } from 'Types';
 import MarkerItem from "../List-Item";
+import "./styles.css";
 
 const MarkersList = ({ items, onMarkerEdit, onMarkerRemove, onMarkerSelect }) =>
     <div className="makers-list-container">

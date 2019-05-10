@@ -54,12 +54,12 @@
     outline: none;
     border-radius: 5px;
     font-weight: 600;
-    width: 80px;
-    height: 30px;
+    min-width: 80px;
+    padding: 5px 10px;
     transition: all 0.2s ease;
 }
 
-.edit-btn {
+.edit-btn {    
     border: 2px solid rgb(59, 165, 67);
     color: rgb(59, 165, 67);
 }
@@ -70,7 +70,7 @@
     color: #ffffff;
 }
 
-.delete-btn {
+.delete-btn {    
     border: 2px solid rgb(216, 27, 27);
     color: rgb(216, 27, 27);
     margin-left: 10px;
